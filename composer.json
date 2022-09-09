@@ -12,5 +12,7 @@
             "email": "simon.coggins@totaralearning.com"
         }
     ],
-    "require": {}
+    "require": {
+        "symfony/http-client": "^6.0"
+    }
 }
