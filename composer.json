@@ -1,0 +1,16 @@
+{
+    "name": "totara/apidemo",
+    "license": "GPLv3+",
+    "autoload": {
+        "psr-4": {
+            "Totara\\Apidemo\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Simon Coggins",
+            "email": "simon.coggins@totaralearning.com"
+        }
+    ],
+    "require": {}
+}
