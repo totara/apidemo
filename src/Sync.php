@@ -25,7 +25,7 @@ class Sync {
     public function run() {
         echo "Running...\n";
 
-        var_dump($this->sourceRequests->getStatus());
+        var_dump($this->sourceRequests->getUsers());
 
     }
 }
