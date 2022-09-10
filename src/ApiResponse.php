@@ -28,7 +28,8 @@ class ApiResponse {
         $errors = $this->getErrorsAsArray();
         $out = count($errors) . " errors found: ";
         foreach ($errors as $error) {
-            $out .= " " . $error['debugMessage'] . "\n";
+            $errorString = $error['debugMessage'] ?? $error['message'] ?? "Unknown error";
+            $out .= " {$errorString}\n";
         }
         return $out;
     }

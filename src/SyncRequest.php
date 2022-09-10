@@ -89,4 +89,56 @@ class SyncRequest {
         ];
         return $this->getAllPaginatedResults('core_user_users', 'items', $query, $params);
     }
+
+    public function createUser($input) {
+        $query = 'mutation core_user_create_user($input: core_user_create_user_input!) {
+            core_user_create_user(input: $input) {
+                user {
+                    id
+                }
+            }
+        }';
+        $params = [
+            'input' => $input
+        ];
+        $response = $this->client->makeAuthenticatedRequest($query, $params);
+        return new ApiResponse($response);
+    }
+
+    public function updateUser($targetUser, $input) {
+        $query = 'mutation core_user_update_user(
+          $target_user: core_user_user_reference!,
+          $input: core_user_update_user_input!
+        ) {
+          core_user_update_user(
+            target_user: $target_user,
+            input: $input
+          ) {
+            user {
+              id
+              username
+            }
+          }
+        }';
+        $params = [
+            'target_user' => $targetUser,
+            'input' => $input,
+        ];
+        $response = $this->client->makeAuthenticatedRequest($query, $params);
+        return new ApiResponse($response);
+    }
+
+    public function deleteUser($targetUser) {
+        $query = 'mutation core_user_delete_user($target_user: core_user_user_reference!) {
+          core_user_delete_user(target_user: $target_user) {
+            user_id
+          }
+        }';
+        $params = [
+            'target_user' => $targetUser,
+        ];
+
+        $response = $this->client->makeAuthenticatedRequest($query, $params);
+        return new ApiResponse($response);
+    }
 }
