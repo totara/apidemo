@@ -5,6 +5,12 @@ namespace Totara\Apidemo;
 use Symfony\Component\HttpClient\HttpClient;
 
 class Sync {
+
+    /**
+     * Specify a service account on the target that should not be deleted during the sync.
+     */
+    const SERVICE_ACCOUNT_USERNAME = 'service.account';
+
     /** @var SyncRequest */
     private $sourceRequests;
     public function __construct() {
@@ -155,6 +161,10 @@ class Sync {
     }
 
     private function deleteUserFromSourceData($user) {
+        if ($user['username'] == self::SERVICE_ACCOUNT_USERNAME) {
+            // Never delete the service account that is performing the operations.
+            return;
+        }
         $targetUser = [
             'username' => $user['username'],
         ];

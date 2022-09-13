@@ -72,7 +72,6 @@ class SyncRequest {
                 }
             ) {
                 items {
-                    id
                     username
                     firstname
                     lastname
